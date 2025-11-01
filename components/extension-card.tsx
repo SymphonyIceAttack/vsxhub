@@ -29,7 +29,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-shadow duration-300 bg-card">
+    <Card className="group hover:shadow-lg transition-shadow duration-300 bg-card flex flex-col h-full">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex flex-col flex-1">
         <CardDescription className="text-sm leading-relaxed text-pretty line-clamp-3">
           {extension.description}
         </CardDescription>
@@ -83,7 +83,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
           </div>
         </div>
 
-        <Button className="w-full" size="sm" onClick={handleInstall}>
+        <Button className="w-full mt-auto" size="sm" onClick={handleInstall}>
           Install Extension
         </Button>
       </CardContent>
