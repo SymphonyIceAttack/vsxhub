@@ -1,7 +1,6 @@
 "use client";
 
 import { Download, Star } from "lucide-react";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,7 +34,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted overflow-hidden flex-shrink-0">
-              <Image
+              <img
                 src={extension.icon || "/placeholder.svg"}
                 alt={`${extension.name} icon`}
                 className="h-full w-full object-cover"
