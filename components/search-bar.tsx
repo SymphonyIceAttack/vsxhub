@@ -6,10 +6,11 @@ import { Input } from "@/components/ui/input";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  initialValue?: string;
 }
 
-export function SearchBar({ onSearch }: SearchBarProps) {
-  const [query, setQuery] = useState("");
+export function SearchBar({ onSearch, initialValue = "" }: SearchBarProps) {
+  const [query, setQuery] = useState(initialValue);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,6 +19,10 @@ export function SearchBar({ onSearch }: SearchBarProps) {
 
     return () => clearTimeout(timer);
   }, [query, onSearch]);
+
+  useEffect(() => {
+    setQuery(initialValue);
+  }, [initialValue]);
 
   return (
     <div className="relative max-w-2xl">

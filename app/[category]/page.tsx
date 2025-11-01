@@ -2,32 +2,45 @@
 
 import { Code2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
 
-export default function Home() {
-  const searchParams = useSearchParams();
+interface PageProps {
+  params: Promise<{ category: string }>;
+}
+
+export default function CategoryPage({ params }: PageProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { category } = use(params);
+  const decodedCategory = decodeURIComponent(category);
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
-  const handleCategoryChange = (category: string) => {
-    if (category === "all") {
-      const searchParam = search ? `?search=${encodeURIComponent(search)}` : "";
-      router.push(`/${searchParam}`);
+  useEffect(() => {
+    console.log("[v0] CategoryPage mounted with category:", decodedCategory);
+  }, [decodedCategory]);
+
+  const handleCategoryChange = (newCategory: string) => {
+    console.log("[v0] Category changed to:", newCategory);
+    if (newCategory === "all") {
+      router.push("/");
     } else {
       const searchParam = search ? `?search=${encodeURIComponent(search)}` : "";
-      router.push(`/${encodeURIComponent(category)}${searchParam}`);
+      router.push(`/${encodeURIComponent(newCategory)}${searchParam}`);
     }
   };
 
   const handleSearchChange = (newSearch: string) => {
+    console.log("[v0] Search changed to:", newSearch);
     setSearch(newSearch);
     const searchParam = newSearch
       ? `?search=${encodeURIComponent(newSearch)}`
       : "";
-    router.push(`/${searchParam}`, { scroll: false });
+    router.push(`/${encodeURIComponent(decodedCategory)}${searchParam}`, {
+      scroll: false,
+    });
   };
 
   return (
@@ -55,11 +68,14 @@ export default function Home() {
         {/* Search and Filter Section */}
         <div className="mb-8 space-y-6">
           <SearchBar onSearch={handleSearchChange} initialValue={search} />
-          <CategoryFilter selected="all" onSelect={handleCategoryChange} />
+          <CategoryFilter
+            selected={decodedCategory}
+            onSelect={handleCategoryChange}
+          />
         </div>
 
         {/* Extensions Grid */}
-        <ExtensionGrid category="all" search={search} />
+        <ExtensionGrid category={decodedCategory} search={search} />
       </main>
 
       {/* Footer */}

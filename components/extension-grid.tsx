@@ -26,6 +26,13 @@ export function ExtensionGrid({
   category = "all",
   search = "",
 }: ExtensionGridProps) {
+  console.log(
+    "[v0] ExtensionGrid rendering with category:",
+    category,
+    "search:",
+    search,
+  );
+
   const {
     data,
     isLoading,
@@ -41,6 +48,7 @@ export function ExtensionGrid({
       if (search) params.append("search", search);
       params.append("page", pageParam.toString());
 
+      console.log("[v0] Fetching extensions with params:", params.toString());
       const response = await fetch(`/api/extensions?${params.toString()}`);
 
       if (!response.ok) {
@@ -48,6 +56,7 @@ export function ExtensionGrid({
       }
 
       const result = await response.json();
+      console.log("[v0] Fetched extensions count:", result.extensions.length);
       return {
         extensions: result.extensions as Extension[],
         nextPage: pageParam + 1,
