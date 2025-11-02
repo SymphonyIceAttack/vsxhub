@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const categories = [
@@ -22,24 +23,30 @@ const categories = [
 ];
 
 interface CategoryFilterProps {
-  selected: string;
-  onSelect: (category: string) => void;
+  currentCategory: string;
 }
 
-export function CategoryFilter({ selected, onSelect }: CategoryFilterProps) {
+export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
   return (
     <div className="flex flex-wrap gap-2">
-      {categories.map((category) => (
-        <Button
-          key={category.id}
-          variant={selected === category.id ? "default" : "outline"}
-          size="sm"
-          onClick={() => onSelect(category.id)}
-          className="rounded-full"
-        >
-          {category.label}
-        </Button>
-      ))}
+      {categories.map((category) => {
+        const href =
+          category.id === "all" ? "/" : `/${encodeURIComponent(category.id)}`;
+        const isActive = currentCategory === category.id;
+
+        return (
+          <Link key={category.id} href={href}>
+            <Button
+              variant={isActive ? "default" : "outline"}
+              size="sm"
+              className="rounded-full"
+              asChild
+            >
+              <span>{category.label}</span>
+            </Button>
+          </Link>
+        );
+      })}
     </div>
   );
 }

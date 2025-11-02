@@ -1,20 +1,16 @@
 "use client";
 
 import { Code2 } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
 
-interface PageProps {
-  params: Promise<{ category: string }>;
-}
-
-export default function CategoryPage({ params }: PageProps) {
-  const router = useRouter();
+export default function CategoryPage() {
   const searchParams = useSearchParams();
-  const { category } = use(params);
+  const params = useParams();
+  const category = params.category as string;
   const decodedCategory = decodeURIComponent(category);
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
@@ -22,25 +18,17 @@ export default function CategoryPage({ params }: PageProps) {
     console.log("[v0] CategoryPage mounted with category:", decodedCategory);
   }, [decodedCategory]);
 
-  const handleCategoryChange = (newCategory: string) => {
-    console.log("[v0] Category changed to:", newCategory);
-    if (newCategory === "all") {
-      router.push("/");
-    } else {
-      const searchParam = search ? `?search=${encodeURIComponent(search)}` : "";
-      router.push(`/${encodeURIComponent(newCategory)}${searchParam}`);
-    }
-  };
-
   const handleSearchChange = (newSearch: string) => {
     console.log("[v0] Search changed to:", newSearch);
     setSearch(newSearch);
     const searchParam = newSearch
       ? `?search=${encodeURIComponent(newSearch)}`
       : "";
-    router.push(`/${encodeURIComponent(decodedCategory)}${searchParam}`, {
-      scroll: false,
-    });
+    window.history.pushState(
+      {},
+      "",
+      `/${encodeURIComponent(decodedCategory)}${searchParam}`,
+    );
   };
 
   return (
@@ -68,10 +56,7 @@ export default function CategoryPage({ params }: PageProps) {
         {/* Search and Filter Section */}
         <div className="mb-8 space-y-6">
           <SearchBar onSearch={handleSearchChange} initialValue={search} />
-          <CategoryFilter
-            selected={decodedCategory}
-            onSelect={handleCategoryChange}
-          />
+          <CategoryFilter currentCategory={decodedCategory} />
         </div>
 
         {/* Extensions Grid */}

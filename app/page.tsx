@@ -1,7 +1,7 @@
 "use client";
 
 import { Code2 } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
@@ -9,25 +9,14 @@ import { SearchBar } from "@/components/search-bar";
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [search, setSearch] = useState(searchParams.get("search") || "");
-
-  const handleCategoryChange = (category: string) => {
-    if (category === "all") {
-      const searchParam = search ? `?search=${encodeURIComponent(search)}` : "";
-      router.push(`/${searchParam}`);
-    } else {
-      const searchParam = search ? `?search=${encodeURIComponent(search)}` : "";
-      router.push(`/${encodeURIComponent(category)}${searchParam}`);
-    }
-  };
 
   const handleSearchChange = (newSearch: string) => {
     setSearch(newSearch);
     const searchParam = newSearch
       ? `?search=${encodeURIComponent(newSearch)}`
       : "";
-    router.push(`/${searchParam}`, { scroll: false });
+    window.history.pushState({}, "", `/${searchParam}`);
   };
 
   return (
@@ -55,7 +44,7 @@ export default function Home() {
         {/* Search and Filter Section */}
         <div className="mb-8 space-y-6">
           <SearchBar onSearch={handleSearchChange} initialValue={search} />
-          <CategoryFilter selected="all" onSelect={handleCategoryChange} />
+          <CategoryFilter currentCategory="all" />
         </div>
 
         {/* Extensions Grid */}
