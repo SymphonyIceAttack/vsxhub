@@ -1,11 +1,13 @@
 "use client";
 
-import { Code2 } from "lucide-react";
+import { BookOpen, Code2 } from "lucide-react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -24,13 +26,21 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-border bg-card">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-              <Code2 className="h-6 w-6 text-primary-foreground" />
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
+                <Code2 className="h-6 w-6 text-primary-foreground" />
+              </div>
+              <h1 className="text-3xl font-bold text-balance">
+                VSCode Extensions
+              </h1>
             </div>
-            <h1 className="text-3xl font-bold text-balance">
-              VSCode Extensions
-            </h1>
+            <Link href="/blog">
+              <Button variant="outline" className="gap-2 bg-transparent">
+                <BookOpen className="h-4 w-4" />
+                Blog
+              </Button>
+            </Link>
           </div>
           <p className="text-muted-foreground text-pretty">
             Discover the most popular and useful Visual Studio Code extensions
