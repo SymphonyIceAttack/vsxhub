@@ -3,7 +3,7 @@
 import { BookOpen, Code2 } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
@@ -13,13 +13,13 @@ export default function Home() {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
-  const handleSearchChange = (newSearch: string) => {
+  const handleSearchChange = useCallback((newSearch: string) => {
     setSearch(newSearch);
     const searchParam = newSearch
       ? `?search=${encodeURIComponent(newSearch)}`
       : "";
     window.history.pushState({}, "", `/${searchParam}`);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">

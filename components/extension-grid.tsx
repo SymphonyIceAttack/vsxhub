@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { ExtensionCard } from "@/components/extension-card";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -22,7 +22,7 @@ interface ExtensionGridProps {
   search?: string;
 }
 
-export function ExtensionGrid({
+export const ExtensionGrid = memo(function ExtensionGrid({
   category = "all",
   search = "",
 }: ExtensionGridProps) {
@@ -86,7 +86,7 @@ export function ExtensionGrid({
     observer.observe(loadMoreRef.current);
 
     return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [hasNextPage, isFetchingNextPage]);
 
   if (isLoading) {
     return (
@@ -132,4 +132,4 @@ export function ExtensionGrid({
       </div>
     </div>
   );
-}
+});

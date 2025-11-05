@@ -2,7 +2,7 @@
 
 import { Code2 } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
@@ -18,18 +18,21 @@ export default function CategoryPage() {
     console.log("[v0] CategoryPage mounted with category:", decodedCategory);
   }, [decodedCategory]);
 
-  const handleSearchChange = (newSearch: string) => {
-    console.log("[v0] Search changed to:", newSearch);
-    setSearch(newSearch);
-    const searchParam = newSearch
-      ? `?search=${encodeURIComponent(newSearch)}`
-      : "";
-    window.history.pushState(
-      {},
-      "",
-      `/${encodeURIComponent(decodedCategory)}${searchParam}`,
-    );
-  };
+  const handleSearchChange = useCallback(
+    (newSearch: string) => {
+      console.log("[v0] Search changed to:", newSearch);
+      setSearch(newSearch);
+      const searchParam = newSearch
+        ? `?search=${encodeURIComponent(newSearch)}`
+        : "";
+      window.history.pushState(
+        {},
+        "",
+        `/${encodeURIComponent(decodedCategory)}${searchParam}`,
+      );
+    },
+    [decodedCategory],
+  );
 
   return (
     <div className="min-h-screen bg-background">
