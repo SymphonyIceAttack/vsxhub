@@ -49,7 +49,9 @@ export const ExtensionGrid = memo(function ExtensionGrid({
       params.append("page", pageParam.toString());
 
       console.log("[v0] Fetching extensions with params:", params.toString());
-      const response = await fetch(`/api/extensions?${params.toString()}`);
+      const response = await fetch(
+        `https://vsxhub-proxy.1994370030.workers.dev?${params.toString()}`,
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch extensions");
