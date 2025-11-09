@@ -7,7 +7,18 @@ const nextConfig: NextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "symcloud.top",
+      },
+      {
+        protocol: "https",
+        hostname: "**", // Allow all HTTPS domains
+      },
+    ],
   },
+
   experimental: {},
 };
 
