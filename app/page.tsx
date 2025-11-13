@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
+import { FaqDialog } from "@/components/faq-dialog";
 import { SearchBar } from "@/components/search-bar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-3">
+              <FaqDialog />
               <Link href="/blog">
                 <Button
                   variant="outline"
@@ -60,7 +62,7 @@ export default function Home() {
       <main className="container mx-auto px-4 py-12">
         {/* Hero section */}
         <div className="text-center mb-12 space-y-4">
-          <h2 className="text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in">
+          <h2 className="text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in opacity-80">
             Supercharge Your Development
           </h2>
           <p className="text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
