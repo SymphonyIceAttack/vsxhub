@@ -2,25 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-const categories = [
-  { id: "all", label: "All" },
-  { id: "AI", label: "AI" },
-  { id: "Programming Languages", label: "Programming Languages" },
-  { id: "Themes", label: "Themes" },
-  { id: "Debuggers", label: "Debuggers" },
-  { id: "Formatters", label: "Formatters" },
-  { id: "Linters", label: "Linters" },
-  { id: "Snippets", label: "Snippets" },
-  { id: "Testing", label: "Testing" },
-  { id: "Data Science", label: "Data Science" },
-  { id: "Machine Learning", label: "Machine Learning" },
-  { id: "Extension Packs", label: "Extension Packs" },
-  { id: "Language Packs", label: "Language Packs" },
-  { id: "SCM Providers", label: "SCM Providers" },
-  { id: "Notebooks", label: "Notebooks" },
-  { id: "Visualization", label: "Visualization" },
-];
+import { categories, categoryToSlug } from "@/lib/category-utils";
 
 interface CategoryFilterProps {
   currentCategory: string;
@@ -28,10 +10,10 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-3 justify-center">
       {categories.map((category) => {
         const href =
-          category.id === "all" ? "/" : `/${encodeURIComponent(category.id)}`;
+          category.id === "all" ? "/" : `/${categoryToSlug(category.id)}`;
         const isActive = currentCategory === category.id;
 
         return (
@@ -39,7 +21,14 @@ export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
             <Button
               variant={isActive ? "default" : "outline"}
               size="sm"
-              className="rounded-full"
+              className={`
+                rounded-full px-5 py-2 font-medium transition-all duration-300
+                ${
+                  isActive
+                    ? "bg-gradient-to-r from-primary via-secondary to-accent hover:scale-105 shadow-lg"
+                    : "glass-effect border-2 hover:border-primary hover:scale-105"
+                }
+              `}
               asChild
             >
               <span>{category.label}</span>

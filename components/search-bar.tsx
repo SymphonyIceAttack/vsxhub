@@ -1,7 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 
 interface SearchBarProps {
@@ -9,7 +9,10 @@ interface SearchBarProps {
   initialValue?: string;
 }
 
-export function SearchBar({ onSearch, initialValue = "" }: SearchBarProps) {
+export const SearchBar = memo(function SearchBar({
+  onSearch,
+  initialValue = "",
+}: SearchBarProps) {
   const [query, setQuery] = useState(initialValue);
 
   useEffect(() => {
@@ -25,15 +28,15 @@ export function SearchBar({ onSearch, initialValue = "" }: SearchBarProps) {
   }, [initialValue]);
 
   return (
-    <div className="relative max-w-2xl">
-      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <div className="relative max-w-2xl mx-auto">
+      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-primary z-10" />
       <Input
         type="search"
         placeholder="Search extensions by name or functionality..."
-        className="pl-10 h-12 bg-card"
+        className="pl-12 h-14 glass-effect border-2 text-lg focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
     </div>
   );
-}
+});

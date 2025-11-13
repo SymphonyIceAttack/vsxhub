@@ -5,31 +5,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
+  /* Light mode - softer vibrant colors */
+  --background: oklch(0.98 0.02 280);
+  --foreground: oklch(0.25 0.04 280);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card-foreground: oklch(0.25 0.04 280);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.45 0.15 264);
+  --popover-foreground: oklch(0.25 0.04 280);
+  /* Reduced saturation from 0.25 to 0.18 for softer primary color */
+  --primary: oklch(0.58 0.18 280);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.92 0 0);
-  --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.55 0.2 220);
+  /* Reduced saturation from 0.22 to 0.16 */
+  --secondary: oklch(0.65 0.16 320);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.94 0.02 280);
+  --muted-foreground: oklch(0.5 0.04 280);
+  /* Reduced saturation from 0.25 to 0.18 */
+  --accent: oklch(0.68 0.18 200);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  /* Reduced saturation from 0.25 to 0.18 */
+  --destructive: oklch(0.6 0.18 30);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0 0);
-  --input: oklch(0.88 0 0);
-  --ring: oklch(0.45 0.15 264);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.5rem;
+  --border: oklch(0.9 0.02 280);
+  --input: oklch(0.95 0.02 280);
+  --ring: oklch(0.58 0.18 280);
+
+  /* Softer gradient colors - reduced saturation by ~30% */
+  --gradient-start: oklch(0.62 0.18 280);
+  --gradient-mid: oklch(0.66 0.16 320);
+  --gradient-end: oklch(0.7 0.15 200);
+
+  --chart-1: oklch(0.65 0.18 280);
+  --chart-2: oklch(0.7 0.16 200);
+  --chart-3: oklch(0.6 0.15 320);
+  --chart-4: oklch(0.75 0.14 160);
+  --chart-5: oklch(0.7 0.17 60);
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -41,30 +52,41 @@
 }
 
 .dark {
-  --background: oklch(0.12 0 0);
-  --foreground: oklch(0.95 0 0);
-  --card: oklch(0.16 0 0);
-  --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.16 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.6 0.2 264);
+  /* Dark mode - softer neon colors with reduced saturation */
+  --background: oklch(0.18 0.03 280);
+  --foreground: oklch(0.92 0.02 280);
+  --card: oklch(0.22 0.03 280);
+  --card-foreground: oklch(0.92 0.02 280);
+  --popover: oklch(0.22 0.03 280);
+  --popover-foreground: oklch(0.92 0.02 280);
+  /* Reduced saturation from 0.28 to 0.20 */
+  --primary: oklch(0.62 0.2 280);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.22 0 0);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.65 0.22 220);
+  /* Reduced saturation from 0.26 to 0.18 */
+  --secondary: oklch(0.68 0.18 320);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.28 0.03 280);
+  --muted-foreground: oklch(0.58 0.03 280);
+  /* Reduced saturation from 0.28 to 0.20 */
+  --accent: oklch(0.72 0.2 200);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.5 0.2 27);
-  --destructive-foreground: oklch(0.95 0 0);
-  --border: oklch(0.24 0 0);
-  --input: oklch(0.24 0 0);
-  --ring: oklch(0.6 0.2 264);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  /* Reduced saturation from 0.27 to 0.19 */
+  --destructive: oklch(0.63 0.19 30);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.32 0.03 280);
+  --input: oklch(0.28 0.03 280);
+  --ring: oklch(0.62 0.2 280);
+
+  /* Softer gradient for dark mode - reduced saturation by ~30% */
+  --gradient-start: oklch(0.4 0.2 280);
+  --gradient-mid: oklch(0.45 0.18 320);
+  --gradient-end: oklch(0.5 0.17 200);
+
+  --chart-1: oklch(0.62 0.2 280);
+  --chart-2: oklch(0.68 0.18 200);
+  --chart-3: oklch(0.62 0.17 320);
+  --chart-4: oklch(0.72 0.16 160);
+  --chart-5: oklch(0.68 0.19 60);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -122,5 +144,21 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Add dramatic gradient background */
+    background: linear-gradient(
+      135deg,
+      var(--gradient-start) 0%,
+      var(--gradient-mid) 50%,
+      var(--gradient-end) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
   }
+}
+
+/* Add glass morphism effect */
+.glass-effect {
+  background: color-mix(in oklch, var(--card) 70%, transparent);
+  backdrop-filter: blur(20px);
+  border: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
 }

@@ -29,11 +29,11 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-shadow duration-300 bg-card flex flex-col h-full">
+    <Card className="group hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 glass-effect border-2 hover:border-primary flex flex-col h-full">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted overflow-hidden flex-shrink-0">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 overflow-hidden flex-shrink-0 border-2 border-primary/30">
               <img
                 src={extension.icon || "/placeholder.svg"}
                 alt={`${extension.name} icon`}
@@ -44,9 +44,13 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
                   const parent = target.parentElement;
                   if (parent && !parent.textContent) {
                     parent.classList.add(
-                      "text-lg",
-                      "font-semibold",
-                      "text-muted-foreground",
+                      "text-xl",
+                      "font-bold",
+                      "bg-gradient-to-br",
+                      "from-primary",
+                      "to-accent",
+                      "bg-clip-text",
+                      "text-transparent",
                     );
                     parent.textContent = extension.name.charAt(0).toUpperCase();
                   }
@@ -54,13 +58,16 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
               />
             </div>
             <div className="flex-1 min-w-0">
-              <CardTitle className="text-lg text-balance">
+              <CardTitle className="text-lg text-balance group-hover:text-primary transition-colors">
                 {extension.name}
               </CardTitle>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {extension.publisher}
               </p>
-              <Badge variant="secondary" className="mt-1 text-xs">
+              <Badge
+                variant="secondary"
+                className="mt-2 text-xs bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/30"
+              >
                 {extension.category}
               </Badge>
             </div>
@@ -73,17 +80,25 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
         </CardDescription>
 
         <div className="flex items-center justify-between text-sm">
-          <div className="flex items-center gap-1 text-muted-foreground">
+          <div className="flex items-center gap-1.5 text-muted-foreground">
             <Star className="h-4 w-4 fill-accent text-accent" />
-            <span className="font-medium">{extension.rating}</span>
+            <span className="font-semibold text-foreground">
+              {extension.rating}
+            </span>
           </div>
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <Download className="h-4 w-4" />
-            <span>{extension.installs}</span>
+          <div className="flex items-center gap-1.5 text-muted-foreground">
+            <Download className="h-4 w-4 text-primary" />
+            <span className="font-semibold text-foreground">
+              {extension.installs}
+            </span>
           </div>
         </div>
 
-        <Button className="w-full mt-auto" size="sm" onClick={handleInstall}>
+        <Button
+          className="w-full mt-auto bg-gradient-to-r from-primary via-secondary to-accent hover:scale-105 transition-transform shadow-lg font-semibold"
+          size="sm"
+          onClick={handleInstall}
+        >
           Install Extension
         </Button>
       </CardContent>

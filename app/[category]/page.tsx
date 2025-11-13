@@ -1,26 +1,31 @@
 "use client";
 
-import { Code2 } from "lucide-react";
+import { BookOpen, Code2, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
 import { SearchBar } from "@/components/search-bar";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Button } from "@/components/ui/button";
+import {
+  categoryToSlug,
+  getCategoryLabel,
+  slugToCategory,
+} from "@/lib/category-utils";
 
 export default function CategoryPage() {
   const searchParams = useSearchParams();
   const params = useParams();
-  const category = params.category as string;
-  const decodedCategory = decodeURIComponent(category);
-  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const slug = params.category as string;
+  const category = slugToCategory(slug);
+  const categoryLabel = getCategoryLabel(slug);
 
-  useEffect(() => {
-    console.log("[v0] CategoryPage mounted with category:", decodedCategory);
-  }, [decodedCategory]);
+  const [search, setSearch] = useState(searchParams.get("search") || "");
 
   const handleSearchChange = useCallback(
     (newSearch: string) => {
-      console.log("[v0] Search changed to:", newSearch);
       setSearch(newSearch);
       const searchParam = newSearch
         ? `?search=${encodeURIComponent(newSearch)}`
@@ -28,48 +33,78 @@ export default function CategoryPage() {
       window.history.pushState(
         {},
         "",
-        `/${encodeURIComponent(decodedCategory)}${searchParam}`,
+        `/${categoryToSlug(category)}${searchParam}`,
       );
     },
-    [decodedCategory],
+    [category],
   );
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
+    <div className="min-h-screen">
+      <header className="glass-effect sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-              <Code2 className="h-6 w-6 text-primary-foreground" />
+          <div className="flex items-center justify-between mb-2">
+            <Link
+              href="/"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg animate-pulse">
+                <Code2 className="h-7 w-7 text-primary-foreground" />
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  VSCode Extensions
+                </h1>
+                <div className="flex items-center gap-1 text-xs text-accent">
+                  <Sparkles className="h-3 w-3" />
+                  <span>{categoryLabel}</span>
+                </div>
+              </div>
+            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/blog">
+                <Button
+                  variant="outline"
+                  className="gap-2 glass-effect border-2 hover:scale-105 transition-transform bg-transparent"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  Blog
+                </Button>
+              </Link>
+              <ThemeToggle />
             </div>
-            <h1 className="text-3xl font-bold text-balance">
-              VSCode Extensions
-            </h1>
           </div>
-          <p className="text-muted-foreground text-pretty">
-            Discover the most popular and useful Visual Studio Code extensions
-            to boost your development productivity
-          </p>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-12">
+        {/* Category title */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            {categoryLabel} Extensions
+          </h2>
+        </div>
+
         {/* Search and Filter Section */}
-        <div className="mb-8 space-y-6">
+        <div className="mb-12 space-y-6">
           <SearchBar onSearch={handleSearchChange} initialValue={search} />
-          <CategoryFilter currentCategory={decodedCategory} />
+          <CategoryFilter currentCategory={category} />
         </div>
 
         {/* Extensions Grid */}
-        <ExtensionGrid category={decodedCategory} search={search} />
+        <ExtensionGrid category={category} search={search} />
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border mt-16 py-8">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>Curated Best VSCode Extensions · Continuously Updated</p>
+      <footer className="glass-effect mt-16 py-8 border-t-2">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            Curated Best VSCode Extensions · Continuously Updated
+          </p>
+          <div className="mt-2 flex justify-center gap-2">
+            <span className="inline-block h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+            <span className="inline-block h-2 w-2 rounded-full bg-secondary animate-pulse delay-100"></span>
+            <span className="inline-block h-2 w-2 rounded-full bg-accent animate-pulse delay-200"></span>
+          </div>
         </div>
       </footer>
     </div>

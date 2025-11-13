@@ -1,7 +1,7 @@
 // This is the Cloudflare Worker script.
 
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, _env, _ctx) {
     // Handle CORS preflight requests
     if (request.method === "OPTIONS") {
       return handleOptions(request);
