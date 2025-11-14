@@ -17,6 +17,7 @@ export function TableOfContents({ content }: { content: string }) {
     const headingRegex = /^(#{1,6})\s+(.+)$/gm;
     const extractedHeadings: Heading[] = [];
     let match = headingRegex.exec(content);
+
     while (match !== null) {
       const level = match[1].length;
       const text = match[2].trim();
@@ -24,9 +25,7 @@ export function TableOfContents({ content }: { content: string }) {
         .toLowerCase()
         .replace(/[^a-z0-9\s-]/g, "")
         .replace(/\s+/g, "-");
-
       extractedHeadings.push({ id, text, level });
-
       match = headingRegex.exec(content);
     }
 

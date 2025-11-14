@@ -44,7 +44,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-3">
               <FaqDialog />
-              <Link href="/blog">
+              <Link href="/posts">
                 <Button
                   variant="outline"
                   className="gap-2 glass-effect border-2 hover:scale-105 transition-transform bg-transparent"
