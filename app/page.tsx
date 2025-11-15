@@ -26,34 +26,44 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <header className="glass-effect sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg animate-pulse">
-                <Code2 className="h-7 w-7 text-primary-foreground" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                  VSCode Extensions
-                </h1>
-                <div className="flex items-center gap-1 text-xs text-accent">
-                  <Sparkles className="h-3 w-3" />
-                  <span>Discover Amazing Extensions</span>
+        <div className="container mx-auto px-4 py-4 md:py-6">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:mb-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg animate-pulse">
+                  <Code2 className="h-5 w-5 md:h-7 md:w-7 text-primary-foreground" />
+                </div>
+                <div>
+                  <h1 className="text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    VSCode Extensions
+                  </h1>
+                  <div className="flex items-center gap-1 text-xs text-accent">
+                    <Sparkles className="h-3 w-3" />
+                    <span className="hidden sm:inline">
+                      Discover Amazing Extensions
+                    </span>
+                    <span className="sm:hidden">Discover Extensions</span>
+                  </div>
                 </div>
               </div>
+              <div className="md:hidden">
+                <ThemeToggle />
+              </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 md:gap-3">
               <FaqDialog />
-              <Link href="/posts">
+              <Link href="/blog">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border-2 hover:scale-105 transition-transform bg-transparent"
+                  className="gap-2 glass-effect border-2 hover:scale-105 transition-transform bg-transparent text-sm md:text-base"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Blog
+                  <span className="hidden md:inline">Blog</span>
                 </Button>
               </Link>
-              <ThemeToggle />
+              <div className="hidden md:block">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         </div>
