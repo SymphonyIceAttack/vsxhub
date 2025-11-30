@@ -3,6 +3,7 @@
 import { Code2, Shield, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/breadcrumb";
+import { MobileMenu } from "@/components/mobile-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
@@ -10,32 +11,42 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen">
       <header className="glass-effect sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-4 md:py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 md:gap-3">
-              <Link
-                href="/"
-                className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity"
-              >
-                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-primary shadow-md">
-                  <Code2 className="h-5 w-5 md:h-7 md:w-7 text-primary-foreground" />
-                </div>
-                <div>
-                  <h1 className="text-xl md:text-3xl font-bold text-balance text-foreground">
-                    VSCode Extensions
-                  </h1>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Sparkles className="h-3 w-3" />
-                    <span>Privacy Policy</span>
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-6">
+          <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between md:mb-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <Link
+                  href="/"
+                  className="flex items-center gap-2 sm:gap-3 hover:opacity-80 transition-opacity"
+                >
+                  <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg">
+                    <Code2 className="h-5 w-5 sm:h-7 sm:w-7 text-primary-foreground" />
                   </div>
-                </div>
-              </Link>
+                  <div>
+                    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                      VSCode Extensions
+                    </h1>
+                    <div className="flex items-center gap-1 text-xs text-accent">
+                      <Sparkles className="h-3 w-3" />
+                      <span className="hidden sm:inline">Privacy Policy</span>
+                      <span className="sm:hidden">Privacy</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              {/* Mobile Navigation - Menu and Theme Toggle */}
+              <div className="md:hidden flex items-center gap-2">
+                <MobileMenu />
+                <ThemeToggle />
+              </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-3">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-2 lg:gap-3">
               <Link href="/about">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
                 >
                   About
                 </Button>
@@ -43,7 +54,8 @@ export default function PrivacyPage() {
               <Link href="/contact">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
                 >
                   Contact
                 </Button>
@@ -51,7 +63,8 @@ export default function PrivacyPage() {
               <Link href="/faq">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
                 >
                   FAQ
                 </Button>
@@ -59,7 +72,7 @@ export default function PrivacyPage() {
               <Link href="/posts">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
                 >
                   Blog
                 </Button>

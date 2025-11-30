@@ -20,7 +20,7 @@ export function ThemeToggle() {
       <Button
         variant="outline"
         size="icon"
-        className="glass-effect border hover:border-primary transition-colors bg-transparent"
+        className="glass-effect border hover:border-primary transition-colors"
         aria-label="Toggle theme"
         disabled
       >

@@ -10,7 +10,7 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-3 justify-center">
+    <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
       {categories.map((category) => {
         const href =
           category.id === "all" ? "/" : `/${categoryToSlug(category.id)}`;
@@ -22,7 +22,7 @@ export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
               variant={isActive ? "default" : "outline"}
               size="sm"
               className={`
-                rounded-full px-5 py-2 font-medium transition-all duration-300
+                rounded-full px-3 sm:px-5 py-2 text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap
                 ${
                   isActive
                     ? "bg-primary hover:bg-primary/90 shadow-md"

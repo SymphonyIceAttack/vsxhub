@@ -93,7 +93,7 @@ export default async function PostPage({
                 <Link href="/posts">
                   <Button
                     variant="outline"
-                    className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                    className="gap-2 glass-effect border hover:border-primary transition-colors"
                   >
                     Posts
                   </Button>
@@ -101,7 +101,7 @@ export default async function PostPage({
                 <Link href="/about">
                   <Button
                     variant="outline"
-                    className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                    className="gap-2 glass-effect border hover:border-primary transition-colors"
                   >
                     About
                   </Button>
@@ -109,7 +109,7 @@ export default async function PostPage({
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                    className="gap-2 glass-effect border hover:border-primary transition-colors"
                   >
                     Contact
                   </Button>
@@ -117,7 +117,7 @@ export default async function PostPage({
                 <Link href="/faq">
                   <Button
                     variant="outline"
-                    className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                    className="gap-2 glass-effect border hover:border-primary transition-colors"
                   >
                     FAQ
                   </Button>
@@ -125,7 +125,7 @@ export default async function PostPage({
                 <Link href="/privacy">
                   <Button
                     variant="outline"
-                    className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent"
+                    className="gap-2 glass-effect border hover:border-primary transition-colors"
                   >
                     Privacy
                   </Button>

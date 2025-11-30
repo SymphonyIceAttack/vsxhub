@@ -162,97 +162,124 @@ export const ExtensionGrid = memo(function ExtensionGrid({
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       {/* Extensions Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {extensions.map((extension: Extension) => (
           <ExtensionCard key={extension.id} extension={extension} />
         ))}
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex items-center justify-center space-x-2 py-6">
-        {/* Previous Button */}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handlePrevPage}
-          disabled={currentPage === 1 || isLoading}
-          className="flex items-center gap-1"
-        >
-          <ChevronLeft className="h-4 w-4" />
-          Previous
-        </Button>
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 py-6">
+        {/* Navigation Row */}
+        <div className="flex items-center justify-center space-x-2 w-full sm:w-auto">
+          {/* Previous Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handlePrevPage}
+            disabled={currentPage === 1 || isLoading}
+            className="flex items-center gap-1 min-w-[80px] sm:min-w-[90px]"
+          >
+            <ChevronLeft className="h-4 w-4" />
+            <span className="hidden xs:inline">Previous</span>
+            <span className="xs:hidden">Prev</span>
+          </Button>
 
-        {/* Page Numbers */}
-        <div className="flex items-center space-x-1">
-          {/* First page */}
-          {getPageNumbers()[0] > 1 && (
-            <>
+          {/* Page Numbers */}
+          <div className="flex items-center space-x-1 max-w-[200px] sm:max-w-none overflow-x-auto">
+            {/* First page */}
+            {getPageNumbers()[0] > 1 && (
+              <>
+                <Button
+                  variant={currentPage === 1 ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handlePageChange(1)}
+                  disabled={isLoading}
+                  className="min-w-[40px] flex-shrink-0"
+                >
+                  1
+                </Button>
+                {getPageNumbers()[0] > 2 && (
+                  <span className="px-1 text-muted-foreground flex-shrink-0">
+                    ...
+                  </span>
+                )}
+              </>
+            )}
+
+            {/* Page numbers */}
+            {getPageNumbers().map((pageNum) => (
               <Button
-                variant={currentPage === 1 ? "default" : "outline"}
+                key={pageNum}
+                variant={currentPage === pageNum ? "default" : "outline"}
                 size="sm"
-                onClick={() => handlePageChange(1)}
+                onClick={() => handlePageChange(pageNum)}
                 disabled={isLoading}
+                className="min-w-[40px] flex-shrink-0"
+              >
+                {pageNum}
+              </Button>
+            ))}
+
+            {/* Last page */}
+            {getPageNumbers()[getPageNumbers().length - 1] < totalPages && (
+              <>
+                {getPageNumbers()[getPageNumbers().length - 1] <
+                  totalPages - 1 && (
+                  <span className="px-1 text-muted-foreground flex-shrink-0">
+                    ...
+                  </span>
+                )}
+                <Button
+                  variant={currentPage === totalPages ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={isLoading}
+                  className="min-w-[40px] flex-shrink-0"
+                >
+                  {totalPages}
+                </Button>
+              </>
+            )}
+
+            {/* Show page 1 if no other pages and totalPages is 1 */}
+            {totalPages === 1 && (
+              <Button
+                variant="default"
+                size="sm"
+                disabled={true}
+                className="min-w-[40px] flex-shrink-0"
               >
                 1
               </Button>
-              {getPageNumbers()[0] > 2 && (
-                <span className="px-2 text-muted-foreground">...</span>
-              )}
-            </>
-          )}
+            )}
+          </div>
 
-          {/* Page numbers */}
-          {getPageNumbers().map((pageNum) => (
-            <Button
-              key={pageNum}
-              variant={currentPage === pageNum ? "default" : "outline"}
-              size="sm"
-              onClick={() => handlePageChange(pageNum)}
-              disabled={isLoading}
-            >
-              {pageNum}
-            </Button>
-          ))}
-
-          {/* Last page */}
-          {getPageNumbers()[getPageNumbers().length - 1] < totalPages && (
-            <>
-              {getPageNumbers()[getPageNumbers().length - 1] <
-                totalPages - 1 && (
-                <span className="px-2 text-muted-foreground">...</span>
-              )}
-              <Button
-                variant={currentPage === totalPages ? "default" : "outline"}
-                size="sm"
-                onClick={() => handlePageChange(totalPages)}
-                disabled={isLoading}
-              >
-                {totalPages}
-              </Button>
-            </>
-          )}
-
-          {/* Show page 1 if no other pages and totalPages is 1 */}
-          {totalPages === 1 && (
-            <Button variant="default" size="sm" disabled={true}>
-              1
-            </Button>
-          )}
+          {/* Next Button */}
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages || isLoading}
+            className="flex items-center gap-1 min-w-[80px] sm:min-w-[90px]"
+          >
+            <span className="hidden xs:inline">Next</span>
+            <span className="xs:hidden">Next</span>
+            <ChevronRight className="h-4 w-4" />
+          </Button>
         </div>
 
-        {/* Next Button */}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages || isLoading}
-          className="flex items-center gap-1"
-        >
-          Next
-          <ChevronRight className="h-4 w-4" />
-        </Button>
+        {/* Page info - moved below on mobile */}
+        <div className="text-center text-sm text-muted-foreground w-full sm:w-auto">
+          Page {currentPage} of {totalPages}
+          {data?.totalExtensions && (
+            <span className="block sm:inline sm:ml-2 mt-1 sm:mt-0">
+              ({data.totalExtensions} total extensions)
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Loading indicator for page changes */}

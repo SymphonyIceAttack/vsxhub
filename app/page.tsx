@@ -34,15 +34,15 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <header className="glass-effect sticky top-0 z-50 shadow-lg">
-        <div className="container mx-auto px-4 py-4 md:py-6">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:mb-2">
+        <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-6">
+          <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between md:mb-2">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 md:gap-3">
-                <div className="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg animate-pulse">
-                  <Code2 className="h-5 w-5 md:h-7 md:w-7 text-primary-foreground" />
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary via-secondary to-accent shadow-lg animate-pulse">
+                  <Code2 className="h-5 w-5 sm:h-7 sm:w-7 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                     VSCode Extensions
                   </h1>
                   <div className="flex items-center gap-1 text-xs text-accent">
@@ -66,7 +66,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors text-sm lg:text-base"
                 >
                   <Info className="h-4 w-4" />
                   <span className="hidden lg:inline">About</span>
@@ -76,7 +76,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors text-sm lg:text-base"
                 >
                   <Mail className="h-4 w-4" />
                   <span className="hidden lg:inline">Contact</span>
@@ -86,7 +86,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors text-sm lg:text-base"
                 >
                   <HelpCircle className="h-4 w-4" />
                   <span className="hidden lg:inline">FAQ</span>
@@ -96,7 +96,7 @@ export default function Home() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors text-sm lg:text-base"
                 >
                   <Shield className="h-4 w-4" />
                   <span className="hidden lg:inline">Privacy</span>
@@ -105,7 +105,7 @@ export default function Home() {
               <Link href="/posts">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors text-sm lg:text-base"
                 >
                   <BookOpen className="h-4 w-4" />
                   <span className="hidden lg:inline">Blog</span>
@@ -117,19 +117,19 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-12">
+      <main className="container mx-auto px-3 sm:px-4 py-8 sm:py-12">
         {/* Hero section */}
-        <div className="text-center mb-12 space-y-4">
-          <h2 className="text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in opacity-80">
+        <div className="text-center mb-8 sm:mb-12 space-y-3 sm:space-y-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in opacity-80">
             Supercharge Your Development
           </h2>
-          <p className="text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
             Discover the most popular and powerful Visual Studio Code extensions
           </p>
         </div>
 
         {/* Search and Filter Section */}
-        <div className="mb-12 space-y-6">
+        <div className="mb-8 sm:mb-12 space-y-4 sm:space-y-6">
           <SearchBar onSearch={handleSearchChange} initialValue={search} />
           <CategoryFilter currentCategory="all" />
         </div>
