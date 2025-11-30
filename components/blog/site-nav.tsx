@@ -13,16 +13,28 @@ export function SiteNav() {
         </Link>
         <div className="flex items-center gap-3">
           <Link
-            href="/"
+            href="/about"
             className="px-4 py-2 rounded-lg text-gray-900 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all font-bold"
           >
-            Home
+            About
           </Link>
           <Link
-            href="/posts"
+            href="/contact"
             className="px-4 py-2 rounded-lg text-gray-900 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all font-bold"
           >
-            Posts
+            Contact
+          </Link>
+          <Link
+            href="/faq"
+            className="px-4 py-2 rounded-lg text-gray-900 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all font-bold"
+          >
+            FAQ
+          </Link>
+          <Link
+            href="/privacy"
+            className="px-4 py-2 rounded-lg text-gray-900 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-all font-bold"
+          >
+            Privacy
           </Link>
           <BlogThemeToggle />
         </div>

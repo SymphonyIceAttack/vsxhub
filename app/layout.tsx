@@ -1,15 +1,14 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import type React from "react";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "VSCode Extensions - Discover the Best Extensions",
+  title: {
+    default: "VSCode Extensions - Discover the Best Extensions",
+    template: "%s | VSCode Extensions",
+  },
   description:
     "Curated collection of the most popular and useful Visual Studio Code extensions to boost your development productivity. Browse by category, search, and find the perfect extensions for your workflow.",
   keywords: [
@@ -23,8 +22,21 @@ export const metadata: Metadata = {
     "programming",
     "IDE",
     "developer tools",
+    "web development",
+    "javascript",
+    "typescript",
+    "python",
+    "react",
+    "vue",
+    "angular",
+    "coding",
+    "software development",
+    "open source",
+    "vs code extensions",
+    "developer productivity",
+    "coding tools",
   ],
-  authors: [{ name: "SymphoneIceAttack" }],
+  authors: [{ name: "SymphoneIceAttack", url: "https://vsxhub.top" }],
   creator: "SymphoneIceAttack",
   publisher: "SymphoneIceAttack",
   generator: "SymphoneIceAttack",
@@ -33,6 +45,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vsxhub.top"),
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": [
+        { url: "/sitemap.xml", title: "VSCode Extensions RSS" },
+      ],
+    },
   },
   openGraph: {
     type: "website",
@@ -49,33 +66,90 @@ export const metadata: Metadata = {
         height: 630,
         alt: "VSCode Extensions - Discover the Best Extensions",
       },
+      {
+        url: "/twitter-image.png",
+        width: 1200,
+        height: 630,
+        alt: "VSCode Extensions - Discover the Best Extensions",
+      },
     ],
+    videos: [],
+    audio: [],
   },
   twitter: {
     card: "summary_large_image",
+    site: "@vsxhub",
+    creator: "@vsxhub",
     title: "VSCode Extensions - Discover the Best Extensions",
     description:
       "Curated collection of the most popular and useful Visual Studio Code extensions to boost your development productivity.",
-    images: ["/og-image.png"],
-    creator: "@vscode",
+    images: ["/twitter-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
       "max-video-preview": -1,
-      "max-image-preview": "large",
       "max-snippet": -1,
+      notranslate: false,
     },
+    notranslate: false,
   },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        url: "/favicon-32x32.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        url: "/icon-192.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "512x512",
+        url: "/icon-512.png",
+      },
+    ],
   },
   manifest: "/site.webmanifest",
+  category: "technology",
+  classification: "Software Development Tools",
+  other: {
+    "theme-color": "#1e40af",
+    "msapplication-TileColor": "#1e40af",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "apple-mobile-web-app-title": "VSCode Extensions",
+    "format-detection": "telephone=no",
+    "mobile-web-app-capable": "yes",
+    "msapplication-config": "/browserconfig.xml",
+    "msapplication-TileImage": "/icon-192.png",
+    "pinterest-rich-pins": "false",
+    "twitter:domain": "vsxhub.top",
+    "twitter:image:alt": "VSCode Extensions - Discover the Best Extensions",
+    "twitter:label1": "Browse",
+    "twitter:data1": "Extensions",
+    "twitter:label2": "Find",
+    "twitter:data2": "Tools",
+    "og:site_name": "VSCode Extensions",
+    "og:locale:alternate": "en_US",
+    "article:publisher": "https://vsxhub.top",
+    "profile:first_name": "VSCode",
+    "profile:last_name": "Extensions",
+    "profile:username": "vsxhub",
+  },
 };
 
 export default function RootLayout({

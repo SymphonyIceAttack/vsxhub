@@ -1,12 +1,20 @@
 "use client";
 
-import { BookOpen, Code2, Sparkles } from "lucide-react";
+import {
+  BookOpen,
+  Code2,
+  HelpCircle,
+  Info,
+  Mail,
+  Shield,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
 import { CategoryFilter } from "@/components/category-filter";
 import { ExtensionGrid } from "@/components/extension-grid";
-import { FaqDialog } from "@/components/faq-dialog";
+import { MobileMenu } from "@/components/mobile-menu";
 import { SearchBar } from "@/components/search-bar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -46,24 +54,64 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="md:hidden">
+              {/* Mobile Navigation - Menu and Theme Toggle */}
+              <div className="md:hidden flex items-center gap-2">
+                <MobileMenu />
                 <ThemeToggle />
               </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-3">
-              <FaqDialog />
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-2 lg:gap-3">
+              <Link href="/about">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                >
+                  <Info className="h-4 w-4" />
+                  <span className="hidden lg:inline">About</span>
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                >
+                  <Mail className="h-4 w-4" />
+                  <span className="hidden lg:inline">Contact</span>
+                </Button>
+              </Link>
+              <Link href="/faq">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                >
+                  <HelpCircle className="h-4 w-4" />
+                  <span className="hidden lg:inline">FAQ</span>
+                </Button>
+              </Link>
+              <Link href="/privacy">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
+                >
+                  <Shield className="h-4 w-4" />
+                  <span className="hidden lg:inline">Privacy</span>
+                </Button>
+              </Link>
               <Link href="/posts">
                 <Button
                   variant="outline"
-                  className="gap-2 glass-effect border-2 hover:scale-105 transition-transform bg-transparent text-sm md:text-base"
+                  className="gap-2 glass-effect border hover:border-primary transition-colors bg-transparent text-sm lg:text-base"
                 >
                   <BookOpen className="h-4 w-4" />
-                  <span className="hidden md:inline">Blog</span>
+                  <span className="hidden lg:inline">Blog</span>
                 </Button>
               </Link>
-              <div className="hidden md:block">
-                <ThemeToggle />
-              </div>
+              <ThemeToggle />
             </div>
           </div>
         </div>

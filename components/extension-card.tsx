@@ -29,11 +29,11 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
   };
 
   return (
-    <Card className="group hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 glass-effect border-2 hover:border-primary flex flex-col h-full">
+    <Card className="group hover:shadow-lg hover:scale-[1.01] transition-all duration-300 glass-effect border hover:border-primary flex flex-col h-full">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 overflow-hidden flex-shrink-0 border-2 border-primary/30">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 overflow-hidden flex-shrink-0 border border-primary/20">
               <img
                 src={extension.icon || "/placeholder.svg"}
                 alt={`${extension.name} icon`}
@@ -44,13 +44,9 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
                   const parent = target.parentElement;
                   if (parent && !parent.textContent) {
                     parent.classList.add(
-                      "text-xl",
+                      "text-lg",
                       "font-bold",
-                      "bg-gradient-to-br",
-                      "from-primary",
-                      "to-accent",
-                      "bg-clip-text",
-                      "text-transparent",
+                      "text-primary",
                     );
                     parent.textContent = extension.name.charAt(0).toUpperCase();
                   }
@@ -64,10 +60,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
               <p className="text-xs text-muted-foreground mt-0.5">
                 {extension.publisher}
               </p>
-              <Badge
-                variant="secondary"
-                className="mt-2 text-xs bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/30"
-              >
+              <Badge variant="secondary" className="mt-2 text-xs">
                 {extension.category}
               </Badge>
             </div>
@@ -95,7 +88,7 @@ export function ExtensionCard({ extension }: { extension: Extension }) {
         </div>
 
         <Button
-          className="w-full mt-auto bg-gradient-to-r from-primary via-secondary to-accent hover:scale-105 transition-transform shadow-lg font-semibold"
+          className="w-full mt-auto bg-primary hover:bg-primary/90 transition-colors font-medium"
           size="sm"
           onClick={handleInstall}
         >

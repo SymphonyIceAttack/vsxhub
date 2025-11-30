@@ -25,8 +25,8 @@ export function CategoryFilter({ currentCategory }: CategoryFilterProps) {
                 rounded-full px-5 py-2 font-medium transition-all duration-300
                 ${
                   isActive
-                    ? "bg-gradient-to-r from-primary via-secondary to-accent hover:scale-105 shadow-lg"
-                    : "glass-effect border-2 hover:border-primary hover:scale-105"
+                    ? "bg-primary hover:bg-primary/90 shadow-md"
+                    : "glass-effect border hover:border-primary"
                 }
               `}
               asChild

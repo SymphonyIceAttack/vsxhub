@@ -1,8 +1,10 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { memo, useEffect, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { memo, useEffect, useState } from "react";
 import { ExtensionCard } from "@/components/extension-card";
+import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 
 interface Extension {
@@ -22,31 +24,39 @@ interface ExtensionGridProps {
   search?: string;
 }
 
+interface ApiResponse {
+  extensions: Extension[];
+  totalPages?: number;
+  currentPage?: number;
+  totalExtensions?: number;
+}
+
+const ITEMS_PER_PAGE = 30;
+
 export const ExtensionGrid = memo(function ExtensionGrid({
   category = "all",
   search = "",
 }: ExtensionGridProps) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
   console.log(
     "[v0] ExtensionGrid rendering with category:",
     category,
     "search:",
     search,
+    "page:",
+    currentPage,
   );
 
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery({
-    queryKey: ["extensions", category, search],
-    queryFn: async ({ pageParam = 1 }) => {
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ["extensions", category, search, currentPage],
+    queryFn: async () => {
       const params = new URLSearchParams();
       if (category && category !== "all") params.append("category", category);
       if (search) params.append("search", search);
-      params.append("page", pageParam.toString());
+      params.append("page", currentPage.toString());
+      params.append("limit", ITEMS_PER_PAGE.toString());
 
       console.log("[v0] Fetching extensions with params:", params.toString());
       const response = await fetch(
@@ -59,38 +69,68 @@ export const ExtensionGrid = memo(function ExtensionGrid({
 
       const result = await response.json();
       console.log("[v0] Fetched extensions count:", result.extensions.length);
-      return {
-        extensions: result.extensions as Extension[],
-        nextPage: pageParam + 1,
-        hasMore: result.extensions.length > 0,
-      };
+
+      return result as ApiResponse;
     },
-    getNextPageParam: (lastPage) => {
-      return lastPage.hasMore ? lastPage.nextPage : undefined;
-    },
-    initialPageParam: 1,
   });
 
-  const loadMoreRef = useRef<HTMLDivElement>(null);
-
+  // Reset to page 1 when category or search changes
   useEffect(() => {
-    if (!loadMoreRef.current || !hasNextPage || isFetchingNextPage) return;
+    setCurrentPage(1);
+  }, [category, search]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          fetchNextPage();
-        }
-      },
-      { threshold: 0.1 },
-    );
+  // Update total pages when data changes
+  useEffect(() => {
+    if (data?.totalPages) {
+      setTotalPages(data.totalPages);
+    } else if (data?.extensions && data.extensions.length < ITEMS_PER_PAGE) {
+      // If we get fewer results than items per page, this might be the last page
+      setTotalPages(currentPage);
+    } else if (data?.extensions && data.extensions.length === ITEMS_PER_PAGE) {
+      // If we get exactly the page size, there might be more pages
+      setTotalPages(currentPage + 1);
+    }
+  }, [data, currentPage]);
 
-    observer.observe(loadMoreRef.current);
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
 
-    return () => observer.disconnect();
-  }, [hasNextPage, isFetchingNextPage]);
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
-  if (isLoading) {
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pages = [];
+    const showPages = 5; // Number of page buttons to show
+
+    let startPage = Math.max(1, currentPage - Math.floor(showPages / 2));
+    const endPage = Math.min(totalPages, startPage + showPages - 1);
+
+    // Adjust start page if we're near the end
+    if (endPage - startPage < showPages - 1) {
+      startPage = Math.max(1, endPage - showPages + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+  if (isLoading && currentPage === 1) {
     return (
       <div className="flex items-center justify-center py-20">
         <Spinner className="h-8 w-8" />
@@ -101,16 +141,19 @@ export const ExtensionGrid = memo(function ExtensionGrid({
   if (error) {
     return (
       <div className="text-center py-20">
-        <p className="text-destructive">
+        <p className="text-destructive mb-4">
           Failed to load extensions. Please try again later.
         </p>
+        <Button onClick={() => refetch()} variant="outline">
+          Retry
+        </Button>
       </div>
     );
   }
 
-  const allExtensions = data?.pages.flatMap((page) => page.extensions) || [];
+  const extensions = data?.extensions || [];
 
-  if (allExtensions.length === 0) {
+  if (extensions.length === 0 && !isLoading) {
     return (
       <div className="text-center py-20">
         <p className="text-muted-foreground">No extensions found</p>
@@ -120,16 +163,115 @@ export const ExtensionGrid = memo(function ExtensionGrid({
 
   return (
     <div className="space-y-8">
+      {/* Extensions Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {allExtensions.map((extension) => (
+        {extensions.map((extension: Extension) => (
           <ExtensionCard key={extension.id} extension={extension} />
         ))}
       </div>
 
-      <div ref={loadMoreRef} className="flex items-center justify-center py-8">
-        {isFetchingNextPage && <Spinner className="h-6 w-6" />}
-        {!hasNextPage && allExtensions.length > 0 && (
-          <p className="text-muted-foreground text-sm">All extensions loaded</p>
+      {/* Pagination Controls */}
+      <div className="flex items-center justify-center space-x-2 py-6">
+        {/* Previous Button */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handlePrevPage}
+          disabled={currentPage === 1 || isLoading}
+          className="flex items-center gap-1"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Previous
+        </Button>
+
+        {/* Page Numbers */}
+        <div className="flex items-center space-x-1">
+          {/* First page */}
+          {getPageNumbers()[0] > 1 && (
+            <>
+              <Button
+                variant={currentPage === 1 ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(1)}
+                disabled={isLoading}
+              >
+                1
+              </Button>
+              {getPageNumbers()[0] > 2 && (
+                <span className="px-2 text-muted-foreground">...</span>
+              )}
+            </>
+          )}
+
+          {/* Page numbers */}
+          {getPageNumbers().map((pageNum) => (
+            <Button
+              key={pageNum}
+              variant={currentPage === pageNum ? "default" : "outline"}
+              size="sm"
+              onClick={() => handlePageChange(pageNum)}
+              disabled={isLoading}
+            >
+              {pageNum}
+            </Button>
+          ))}
+
+          {/* Last page */}
+          {getPageNumbers()[getPageNumbers().length - 1] < totalPages && (
+            <>
+              {getPageNumbers()[getPageNumbers().length - 1] <
+                totalPages - 1 && (
+                <span className="px-2 text-muted-foreground">...</span>
+              )}
+              <Button
+                variant={currentPage === totalPages ? "default" : "outline"}
+                size="sm"
+                onClick={() => handlePageChange(totalPages)}
+                disabled={isLoading}
+              >
+                {totalPages}
+              </Button>
+            </>
+          )}
+
+          {/* Show page 1 if no other pages and totalPages is 1 */}
+          {totalPages === 1 && (
+            <Button variant="default" size="sm" disabled={true}>
+              1
+            </Button>
+          )}
+        </div>
+
+        {/* Next Button */}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleNextPage}
+          disabled={currentPage === totalPages || isLoading}
+          className="flex items-center gap-1"
+        >
+          Next
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Loading indicator for page changes */}
+      {isLoading && currentPage > 1 && (
+        <div className="flex items-center justify-center py-4">
+          <Spinner className="h-6 w-6" />
+          <span className="ml-2 text-sm text-muted-foreground">
+            Loading page {currentPage}...
+          </span>
+        </div>
+      )}
+
+      {/* Page info */}
+      <div className="text-center text-sm text-muted-foreground">
+        Page {currentPage} of {totalPages}
+        {data?.totalExtensions && (
+          <span className="ml-2">
+            ({data.totalExtensions} total extensions)
+          </span>
         )}
       </div>
     </div>

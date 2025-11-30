@@ -11,6 +11,7 @@ export default {
     const category = searchParams.get("category");
     const search = searchParams.get("search");
     const page = Number.parseInt(searchParams.get("page") || "1", 10);
+    const limit = Number.parseInt(searchParams.get("limit") || "30", 10);
 
     try {
       // VSCode Marketplace API endpoint
@@ -35,7 +36,7 @@ export default {
         {
           criteria,
           pageNumber: page,
-          pageSize: 50,
+          pageSize: Math.max(50, limit), // Use at least 50 to ensure we have enough data
           sortBy: 4, // 4 = InstallCount
           sortOrder: 2, // 2 = Descending (high to low)
         },
@@ -62,8 +63,11 @@ export default {
 
       const data = await response.json();
 
+      // Get total count from the response
+      const totalCount = data.results[0]?.resultMetadata?.[0]?.count || 0;
+
       // Transform the data to our format
-      const extensions =
+      const allExtensions =
         data.results[0]?.extensions.map((ext) => {
           const installs =
             ext.statistics.find((s) => s.statisticName === "install")?.value ||
@@ -111,8 +115,11 @@ export default {
           };
         }) || [];
 
-      // The API already filtered by category, so we just sort by installs
-      extensions.sort((a, b) => b.installCount - a.installCount);
+      // Sort by install count (high to low)
+      allExtensions.sort((a, b) => b.installCount - a.installCount);
+
+      // Return only the requested number of extensions
+      const extensions = allExtensions.slice(0, limit);
 
       const responseHeaders = {
         "Content-Type": "application/json",
@@ -127,9 +134,17 @@ export default {
         "Access-Control-Allow-Headers": "Content-Type",
       };
 
-      return new Response(JSON.stringify({ extensions }), {
-        headers: responseHeaders,
-      });
+      return new Response(
+        JSON.stringify({
+          extensions,
+          totalPages: Math.ceil(totalCount / limit), // Calculate based on requested limit
+          currentPage: page,
+          totalExtensions: totalCount,
+        }),
+        {
+          headers: responseHeaders,
+        },
+      );
     } catch (error) {
       console.error("[v0] Error fetching extensions:", error);
       const errorResponseHeaders = {

@@ -5,42 +5,45 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Light mode - softer vibrant colors */
-  --background: oklch(0.98 0.02 280);
-  --foreground: oklch(0.25 0.04 280);
+  /* Professional, muted color palette */
+  --background: oklch(0.99 0.005 60);
+  --foreground: oklch(0.18 0.02 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.04 280);
+  --card-foreground: oklch(0.18 0.02 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.04 280);
-  /* Reduced saturation from 0.25 to 0.18 for softer primary color */
-  --primary: oklch(0.58 0.18 280);
-  --primary-foreground: oklch(0.98 0 0);
-  /* Reduced saturation from 0.22 to 0.16 */
-  --secondary: oklch(0.65 0.16 320);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.94 0.02 280);
-  --muted-foreground: oklch(0.5 0.04 280);
-  /* Reduced saturation from 0.25 to 0.18 */
-  --accent: oklch(0.68 0.18 200);
-  --accent-foreground: oklch(0.98 0 0);
-  /* Reduced saturation from 0.25 to 0.18 */
-  --destructive: oklch(0.6 0.18 30);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.9 0.02 280);
-  --input: oklch(0.95 0.02 280);
-  --ring: oklch(0.58 0.18 280);
+  --popover-foreground: oklch(0.18 0.02 60);
+  /* Muted professional blue */
+  --primary: oklch(0.52 0.08 220);
+  --primary-foreground: oklch(1 0 0);
+  /* Muted gray-blue */
+  --secondary: oklch(0.95 0.02 220);
+  --secondary-foreground: oklch(0.18 0.02 60);
+  /* Subtle neutral */
+  --muted: oklch(0.97 0.01 60);
+  --muted-foreground: oklch(0.52 0.04 60);
+  /* Muted teal accent */
+  --accent: oklch(0.92 0.05 170);
+  --accent-foreground: oklch(0.18 0.02 60);
+  /* Muted destructive */
+  --destructive: oklch(0.62 0.12 25);
+  --destructive-foreground: oklch(1 0 0);
+  /* Soft borders */
+  --border: oklch(0.9 0.01 60);
+  --input: oklch(0.98 0.01 60);
+  --ring: oklch(0.52 0.08 220);
 
-  /* Softer gradient colors - reduced saturation by ~30% */
-  --gradient-start: oklch(0.62 0.18 280);
-  --gradient-mid: oklch(0.66 0.16 320);
-  --gradient-end: oklch(0.7 0.15 200);
+  /* Professional gradient - much more subtle */
+  --gradient-start: oklch(0.97 0.02 220);
+  --gradient-mid: oklch(0.95 0.02 200);
+  --gradient-end: oklch(0.96 0.02 180);
 
-  --chart-1: oklch(0.65 0.18 280);
-  --chart-2: oklch(0.7 0.16 200);
-  --chart-3: oklch(0.6 0.15 320);
-  --chart-4: oklch(0.75 0.14 160);
-  --chart-5: oklch(0.7 0.17 60);
-  --radius: 0.75rem;
+  /* Chart colors - muted palette */
+  --chart-1: oklch(0.65 0.08 220);
+  --chart-2: oklch(0.58 0.08 170);
+  --chart-3: oklch(0.52 0.06 280);
+  --chart-4: oklch(0.68 0.05 140);
+  --chart-5: oklch(0.62 0.07 25);
+  --radius: 0.5rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -52,41 +55,43 @@
 }
 
 .dark {
-  /* Dark mode - softer neon colors with reduced saturation */
-  --background: oklch(0.18 0.03 280);
-  --foreground: oklch(0.92 0.02 280);
-  --card: oklch(0.22 0.03 280);
-  --card-foreground: oklch(0.92 0.02 280);
-  --popover: oklch(0.22 0.03 280);
-  --popover-foreground: oklch(0.92 0.02 280);
-  /* Reduced saturation from 0.28 to 0.20 */
-  --primary: oklch(0.62 0.2 280);
-  --primary-foreground: oklch(0.98 0 0);
-  /* Reduced saturation from 0.26 to 0.18 */
-  --secondary: oklch(0.68 0.18 320);
-  --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.28 0.03 280);
-  --muted-foreground: oklch(0.58 0.03 280);
-  /* Reduced saturation from 0.28 to 0.20 */
-  --accent: oklch(0.72 0.2 200);
-  --accent-foreground: oklch(0.98 0 0);
-  /* Reduced saturation from 0.27 to 0.19 */
-  --destructive: oklch(0.63 0.19 30);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.32 0.03 280);
-  --input: oklch(0.28 0.03 280);
-  --ring: oklch(0.62 0.2 280);
+  /* Professional dark theme */
+  --background: oklch(0.12 0.02 60);
+  --foreground: oklch(0.95 0.01 60);
+  --card: oklch(0.16 0.02 60);
+  --card-foreground: oklch(0.95 0.01 60);
+  --popover: oklch(0.16 0.02 60);
+  --popover-foreground: oklch(0.95 0.01 60);
+  /* Muted blue for dark mode */
+  --primary: oklch(0.65 0.08 220);
+  --primary-foreground: oklch(1 0 0);
+  /* Darker muted elements */
+  --secondary: oklch(0.22 0.02 60);
+  --secondary-foreground: oklch(0.95 0.01 60);
+  --muted: oklch(0.2 0.02 60);
+  --muted-foreground: oklch(0.65 0.03 60);
+  /* Muted teal for dark */
+  --accent: oklch(0.25 0.05 170);
+  --accent-foreground: oklch(0.95 0.01 60);
+  /* Muted destructive for dark */
+  --destructive: oklch(0.65 0.12 25);
+  --destructive-foreground: oklch(1 0 0);
+  /* Subtle borders */
+  --border: oklch(0.25 0.02 60);
+  --input: oklch(0.2 0.02 60);
+  --ring: oklch(0.65 0.08 220);
 
-  /* Softer gradient for dark mode - reduced saturation by ~30% */
-  --gradient-start: oklch(0.4 0.2 280);
-  --gradient-mid: oklch(0.45 0.18 320);
-  --gradient-end: oklch(0.5 0.17 200);
+  /* Professional dark gradient */
+  --gradient-start: oklch(0.15 0.03 220);
+  --gradient-mid: oklch(0.13 0.03 200);
+  --gradient-end: oklch(0.14 0.03 180);
 
-  --chart-1: oklch(0.62 0.2 280);
-  --chart-2: oklch(0.68 0.18 200);
-  --chart-3: oklch(0.62 0.17 320);
-  --chart-4: oklch(0.72 0.16 160);
-  --chart-5: oklch(0.68 0.19 60);
+  /* Chart colors for dark mode */
+  --chart-1: oklch(0.65 0.08 220);
+  --chart-2: oklch(0.58 0.08 170);
+  --chart-3: oklch(0.52 0.06 280);
+  --chart-4: oklch(0.68 0.05 140);
+  --chart-5: oklch(0.62 0.07 25);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -144,21 +149,31 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Add dramatic gradient background */
-    background: linear-gradient(
-      135deg,
-      var(--gradient-start) 0%,
-      var(--gradient-mid) 50%,
-      var(--gradient-end) 100%
-    );
-    background-attachment: fixed;
+    /* Professional solid background instead of bright gradient */
+    background-color: var(--background);
     min-height: 100vh;
   }
 }
 
-/* Add glass morphism effect */
+/* Refined glass morphism effect */
 .glass-effect {
-  background: color-mix(in oklch, var(--card) 70%, transparent);
-  backdrop-filter: blur(20px);
-  border: 1px solid color-mix(in oklch, var(--border) 50%, transparent);
+  background: color-mix(in oklch, var(--card) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+  box-shadow: 0 2px 8px color-mix(in oklch, var(--foreground) 5%, transparent);
+}
+
+/* Subtle animations */
+@keyframes pulse-gentle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 2s ease-in-out infinite;
 }
