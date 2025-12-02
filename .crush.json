@@ -108,6 +108,16 @@
         "MINIMAX_API_HOST": "https://api.minimaxi.com",
         "MINIMAX_API_RESOURCE_MODE": "url"
       }
+    },
+    "serena": {
+      "command": "uvx",
+      "type": "stdio",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ]
     }
   },
   "lsp": {

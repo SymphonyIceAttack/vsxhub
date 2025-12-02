@@ -1,6 +1,7 @@
 import { readItems } from "@directus/sdk";
 import { Code2, Sparkles } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { MobileMenu } from "@/components/mobile-menu";
@@ -37,6 +38,7 @@ export default async function BlogPage() {
           "description",
           "published_at",
           "status",
+          "imageurl",
         ],
         filter: {
           status: { _eq: "published" },
@@ -154,7 +156,17 @@ export default async function BlogPage() {
                     href={`/posts/${post.slug}`}
                     className="group"
                   >
-                    <Card className="h-full transition-all hover:shadow-lg glass-effect border hover:border-primary bg-transparent">
+                    <Card className="h-full transition-all hover:shadow-lg glass-effect border hover:border-primary bg-transparent overflow-hidden">
+                      {post.imageurl && (
+                        <div className="relative w-full h-48 overflow-hidden">
+                          <Image
+                            fill={true}
+                            src={`https://symcloud.top/${post.imageurl}`}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                          />
+                        </div>
+                      )}
                       <CardHeader>
                         <CardTitle className="text-2xl group-hover:text-primary transition-colors text-balance text-foreground">
                           {post.title}
