@@ -238,3 +238,74 @@ className={cn(
 - Directus API calls should be optimized
 - Tailwind CSS purging configured through build process
 - TypeScript build errors ignored (monitor for runtime issues)
+This guide should help you navigate and contribute to the tide forecast project effectively. Always refer to the actual code when implementing changes, as patterns may evolve over time.
+
+## Chrome DevTools Usage in Crush
+
+When using Chrome DevTools tools in Crush, always set `verbose: false` to get clean, concise output instead of verbose a11y tree structures.
+
+### Basic Usage Pattern
+
+```javascript
+// Set verbose: false for clean output
+mcp_chrome-devtools_take_snapshot({
+  "verbose": false
+});
+
+// Simplified page content inspection
+mcp_chrome-devtools_evaluate_script({
+  "function": "() => document.title"
+});
+```
+
+### Common Chrome DevTools Commands
+
+```javascript
+// 1. Take page snapshot (clean output)
+mcp_chrome-devtools_take_snapshot({
+  "verbose": false
+});
+
+// 2. Click element by UID
+mcp_chrome-devtools_click({
+  "uid": "element_id_here"
+});
+
+// 3. Take screenshot
+mcp_chrome-devtools_take_screenshot({
+  "fullPage": true
+});
+
+// 4. Scroll page
+mcp_chrome-devtools_evaluate_script({
+  "function": "() => window.scrollTo(0, 1000)"
+});
+
+// 5. Get network requests
+mcp_chrome-devtools_list_network_requests({
+  "pageSize": 10
+});
+
+// 6. Get console logs
+mcp_chrome-devtools_list_console_messages({
+  "pageSize": 10
+});
+```
+
+### Chrome DevTools Configuration
+
+The Chrome DevTools MCP is configured in `.crush.json`:
+
+```json
+{
+  "mcp": {
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+**Note**: Chrome DevTools and Serena are separate tool systems. Chrome DevTools provides browser automation features, while Serena provides code editing capabilities. They cannot be used interchangeably.
