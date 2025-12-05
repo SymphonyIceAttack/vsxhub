@@ -3,6 +3,7 @@
 import {
   BookOpen,
   Code2,
+  GitBranch,
   HelpCircle,
   Info,
   Mail,
@@ -102,6 +103,15 @@ export default function Home() {
                   <span className="hidden lg:inline">Privacy</span>
                 </Button>
               </Link>
+              <a
+                href="https://github.com/SymphonyIceAttack/vsxhub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 glass-effect border hover:border-primary transition-colors rounded-md px-3 py-2 text-sm lg:text-base"
+              >
+                <GitBranch className="h-4 w-4" />
+                <span className="hidden lg:inline">GitHub</span>
+              </a>
               <Link href="/posts">
                 <Button
                   variant="outline"

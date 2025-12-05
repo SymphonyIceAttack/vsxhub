@@ -134,12 +134,12 @@ export default function ContactPage() {
                 Report bugs, contribute to the project, or view our source code.
               </p>
               <a
-                href="https://github.com/vsxhub"
+                href="https://github.com/SymphonyIceAttack/vsxhub"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary/80 transition-colors font-medium"
               >
-                github.com/vsxhub
+                github.com/SymphonyIceAttack/vsxhub
               </a>
             </div>
           </div>
