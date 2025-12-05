@@ -23,9 +23,9 @@ export default function AboutPage() {
                     <Code2 className="h-5 w-5 sm:h-7 sm:w-7 text-primary-foreground" />
                   </div>
                   <div>
-                    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                       VSCode Extensions
-                    </h1>
+                    </h2>
                     <div className="flex items-center gap-1 text-xs text-accent">
                       <Sparkles className="h-3 w-3" />
                       <span className="hidden sm:inline">About Us</span>
@@ -93,9 +93,9 @@ export default function AboutPage() {
 
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold text-balance text-foreground mb-6">
-              About VSXHub
-            </h2>
+            <h1 className="text-4xl md:text-6xl font-bold text-balance text-foreground mb-6">
+              About VSXHub - Your VSCode Extensions Guide
+            </h1>
             <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
               We are passionate developers who believe that the right extensions
               can transform your development experience. VSXHub is your trusted

@@ -42,9 +42,9 @@ export default function Home() {
                   <Code2 className="h-5 w-5 sm:h-7 sm:w-7 text-primary-foreground" />
                 </div>
                 <div>
-                  <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  <h2 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                     VSCode Extensions
-                  </h1>
+                  </h2>
                   <div className="flex items-center gap-1 text-xs text-accent">
                     <Sparkles className="h-3 w-3" />
                     <span className="hidden sm:inline">
@@ -120,9 +120,9 @@ export default function Home() {
       <main className="container mx-auto px-3 sm:px-4 py-8 sm:py-12">
         {/* Hero section */}
         <div className="text-center mb-8 sm:mb-12 space-y-3 sm:space-y-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in opacity-80">
-            Supercharge Your Development
-          </h2>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-balance bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent animate-fade-in opacity-80">
+            Supercharge Your Development with Premium VSCode Extensions
+          </h1>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
             Discover the most popular and powerful Visual Studio Code extensions
           </p>

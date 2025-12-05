@@ -6,11 +6,11 @@ import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
-    default: "VSCode Extensions - Discover the Best Extensions",
-    template: "%s | VSCode Extensions",
+    default: "VSCode Extensions Hub - Discover Premium Extensions",
+    template: "%s | VSCode Extensions Hub",
   },
   description:
-    "Curated collection of the most popular and useful Visual Studio Code extensions to boost your development productivity. Browse by category, search, and find the perfect extensions for your workflow.",
+    "Discover premium Visual Studio Code extensions to supercharge your development workflow. Browse curated collections, search tools, and boost productivity.",
   keywords: [
     "VSCode",
     "Visual Studio Code",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   creator: "SymphoneIceAttack",
   publisher: "SymphoneIceAttack",
   generator: "SymphoneIceAttack",
-  applicationName: "VSCode Extensions",
+  applicationName: "VSCode Extensions Hub",
   referrer: "origin-when-cross-origin",
   metadataBase: new URL("https://vsxhub.top"),
   alternates: {
@@ -55,22 +55,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "VSCode Extensions - Discover the Best Extensions",
+    title: "VSCode Extensions Hub - Discover Premium Extensions",
     description:
-      "Curated collection of the most popular and useful Visual Studio Code extensions to boost your development productivity.",
-    siteName: "VSCode Extensions",
+      "Discover premium Visual Studio Code extensions to supercharge your development workflow. Browse curated collections, search tools, and boost productivity.",
+    siteName: "VSCode Extensions Hub",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "VSCode Extensions - Discover the Best Extensions",
+        alt: "VSCode Extensions Hub - Discover Premium Extensions",
       },
       {
         url: "/twitter-image.png",
         width: 1200,
         height: 630,
-        alt: "VSCode Extensions - Discover the Best Extensions",
+        alt: "VSCode Extensions Hub - Discover Premium Extensions",
       },
     ],
     videos: [],
@@ -80,9 +80,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@vsxhub",
     creator: "@vsxhub",
-    title: "VSCode Extensions - Discover the Best Extensions",
+    title: "VSCode Extensions Hub - Discover Premium Extensions",
     description:
-      "Curated collection of the most popular and useful Visual Studio Code extensions to boost your development productivity.",
+      "Discover premium Visual Studio Code extensions to supercharge your development workflow. Browse curated collections, search tools, and boost productivity.",
     images: ["/twitter-image.png"],
   },
   robots: {
@@ -131,23 +131,23 @@ export const metadata: Metadata = {
     "msapplication-TileColor": "#1e40af",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
-    "apple-mobile-web-app-title": "VSCode Extensions",
+    "apple-mobile-web-app-title": "VSCode Extensions Hub",
     "format-detection": "telephone=no",
     "mobile-web-app-capable": "yes",
     "msapplication-config": "/browserconfig.xml",
     "msapplication-TileImage": "/icon-192.png",
     "pinterest-rich-pins": "false",
     "twitter:domain": "vsxhub.top",
-    "twitter:image:alt": "VSCode Extensions - Discover the Best Extensions",
+    "twitter:image:alt": "VSCode Extensions Hub - Discover Premium Extensions",
     "twitter:label1": "Browse",
     "twitter:data1": "Extensions",
     "twitter:label2": "Find",
     "twitter:data2": "Tools",
-    "og:site_name": "VSCode Extensions",
+    "og:site_name": "VSCode Extensions Hub",
     "og:locale:alternate": "en_US",
     "article:publisher": "https://vsxhub.top",
     "profile:first_name": "VSCode",
-    "profile:last_name": "Extensions",
+    "profile:last_name": "Extensions Hub",
     "profile:username": "vsxhub",
   },
 };
