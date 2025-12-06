@@ -146,6 +146,162 @@ export default function Home() {
 
         {/* Extensions Grid */}
         <ExtensionGrid category="all" search={search} />
+
+        {/* Introduction section */}
+        <section className="mt-16 sm:mt-20 mb-12 sm:mb-16">
+          <div className="max-w-4xl mx-auto">
+            <div className="prose prose-lg max-w-none text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Transform Your Coding Experience
+              </h2>
+              <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
+                Visual Studio Code has revolutionized the way developers write,
+                debug, and manage code. With thousands of extensions available,
+                VSCode has become more than just a code editor—it's a
+                comprehensive development environment that can be customized to
+                fit any workflow.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              <div className="text-center p-6 rounded-lg bg-card/50 border">
+                <Code2 className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-semibold mb-3">
+                  Enhanced Productivity
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Boost your coding speed with intelligent autocomplete,
+                  debugging tools, and automated workflows that streamline
+                  repetitive tasks and help you focus on what matters
+                  most—building great software.
+                </p>
+              </div>
+              <div className="text-center p-6 rounded-lg bg-card/50 border">
+                <Sparkles className="h-12 w-12 mx-auto mb-4 text-secondary" />
+                <h3 className="text-xl font-semibold mb-3">
+                  Customizable Experience
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Tailor your development environment with themes, keybindings,
+                  and language-specific tools. Create a workspace that feels
+                  uniquely yours while maintaining optimal functionality.
+                </p>
+              </div>
+              <div className="text-center p-6 rounded-lg bg-card/50 border">
+                <BookOpen className="h-12 w-12 mx-auto mb-4 text-accent" />
+                <h3 className="text-xl font-semibold mb-3">
+                  Comprehensive Ecosystem
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Access a vast library of extensions covering everything from
+                  code linting and formatting to AI-powered assistance, version
+                  control integration, and advanced debugging capabilities.
+                </p>
+              </div>
+            </div>
+
+            <div className="prose prose-lg max-w-none">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
+                Why Choose VSCode Extensions?
+              </h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    Development Efficiency
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                    Extensions like GitLens provide deep Git integration, while
+                    tools like Live Server and Auto Rename Tag save hours of
+                    manual work. Code formatters like Prettier and linters like
+                    ESLint ensure consistent code quality across your entire
+                    team.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    Language Support
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                    From Python and JavaScript to Rust and Go, extensions
+                    provide specialized language support including syntax
+                    highlighting, IntelliSense, debugging capabilities, and
+                    framework-specific integrations for React, Vue, Angular, and
+                    more.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    Team Collaboration
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                    Extensions like Live Share enable real-time collaboration,
+                    while extensions for project management and documentation
+                    help teams stay organized and maintain consistent
+                    development practices across projects.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-3">
+                    Modern Development Workflows
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-4">
+                    Integrate with modern tools like Docker, Kubernetes, and
+                    cloud services. Extensions for CI/CD, testing frameworks,
+                    and deployment pipelines streamline your entire development
+                    lifecycle from code to production.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-6">
+                Categories of Extensions
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">Productivity Tools</h4>
+                  <p className="text-muted-foreground">
+                    Enhance your coding efficiency with automation and workflow
+                    improvements
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">Language Extensions</h4>
+                  <p className="text-muted-foreground">
+                    Get enhanced support for your favorite programming languages
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">Version Control</h4>
+                  <p className="text-muted-foreground">
+                    Integrate seamlessly with Git and other version control
+                    systems
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">Theme & UI</h4>
+                  <p className="text-muted-foreground">
+                    Customize your editor's appearance and user interface
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">Debug & Test</h4>
+                  <p className="text-muted-foreground">
+                    Powerful debugging tools and testing framework integrations
+                  </p>
+                </div>
+                <div className="p-4 rounded-lg bg-card/30 border">
+                  <h4 className="font-semibold mb-2">AI & Smart Tools</h4>
+                  <p className="text-muted-foreground">
+                    Leverage artificial intelligence for enhanced development
+                    assistance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="glass-effect mt-16 py-8 border-t-2">

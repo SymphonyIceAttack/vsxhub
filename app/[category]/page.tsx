@@ -56,9 +56,9 @@ export default function CategoryPage() {
                     <Code2 className="h-5 w-5 sm:h-7 sm:w-7 text-primary-foreground" />
                   </div>
                   <div>
-                    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    <span className="text-lg sm:text-xl md:text-3xl font-bold text-balance bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                       VSCode Extensions
-                    </h1>
+                    </span>
                     <div className="flex items-center gap-1 text-xs text-accent">
                       <Sparkles className="h-3 w-3" />
                       <span className="hidden sm:inline">{categoryLabel}</span>
@@ -128,9 +128,9 @@ export default function CategoryPage() {
       <main className="container mx-auto px-4 py-12">
         {/* Category title */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-balance text-foreground">
+          <h1 className="text-4xl font-bold text-balance text-foreground">
             {categoryLabel} Extensions
-          </h2>
+          </h1>
         </div>
 
         {/* Search and Filter Section */}

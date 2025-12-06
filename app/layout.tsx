@@ -6,7 +6,8 @@ import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
-    default: "VSCode Extensions Hub - Discover Premium Extensions",
+    default:
+      "VSCode Extensions Hub - Discover Premium Extensions for Productivity",
     template: "%s | VSCode Extensions Hub",
   },
   description:
@@ -55,22 +56,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "VSCode Extensions Hub - Discover Premium Extensions",
+    title:
+      "VSCode Extensions Hub - Discover Premium Extensions for Productivity",
     description:
       "Discover premium Visual Studio Code extensions to supercharge your development workflow. Browse curated collections, search tools, and boost productivity.",
     siteName: "VSCode Extensions Hub",
     images: [
       {
-        url: "/og-image.png",
+        url: "/communication-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "VSCode Extensions Hub - Discover Premium Extensions",
+        alt: "VSCode Extensions Hub - Discover Premium Extensions for Productivity",
       },
       {
-        url: "/twitter-image.png",
+        url: "/communication-hero.jpg",
         width: 1200,
         height: 630,
-        alt: "VSCode Extensions Hub - Discover Premium Extensions",
+        alt: "VSCode Extensions Hub - Discover Premium Extensions for Productivity",
       },
     ],
     videos: [],
@@ -80,10 +82,11 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@vsxhub",
     creator: "@vsxhub",
-    title: "VSCode Extensions Hub - Discover Premium Extensions",
+    title:
+      "VSCode Extensions Hub - Discover Premium Extensions for Productivity",
     description:
       "Discover premium Visual Studio Code extensions to supercharge your development workflow. Browse curated collections, search tools, and boost productivity.",
-    images: ["/twitter-image.png"],
+    images: ["/communication-hero.jpg"],
   },
   robots: {
     index: true,
@@ -127,8 +130,8 @@ export const metadata: Metadata = {
   category: "technology",
   classification: "Software Development Tools",
   other: {
-    "theme-color": "#1e40af",
-    "msapplication-TileColor": "#1e40af",
+    "theme-color": "#0f172a",
+    "msapplication-TileColor": "#0f172a",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "default",
     "apple-mobile-web-app-title": "VSCode Extensions Hub",
